@@ -5,3 +5,10 @@
     ║  KGF65-KA Belt Conveyor  –  Pure Kinematic-Override model       ║
     ║                                                                  ║
     ║  No tendons · No equality constraints                           ║
+    ║  Belt motion is 100 % kinematic qvel injection in Python        ║
+    ║                                                                  ║
+    ║  ADDITIONS vs original:                                         ║
+    ║    side_camera  – fixed world cam at X=0.40 (before pushers)   ║
+    ║    pusher_red   – slide actuator at X=0.80, fires on RED        ║
+    ║    pusher_yellow– slide actuator at X=1.30, fires on YELLOW     ║
+    ║                                                                  ║
