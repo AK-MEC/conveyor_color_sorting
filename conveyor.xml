@@ -1,0 +1,7 @@
+<mujoco model="KGF65-KA_BeltConveyor">
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  KGF65-KA Belt Conveyor  –  Pure Kinematic-Override model       ║
+    ║                                                                  ║
+    ║  No tendons · No equality constraints                           ║
