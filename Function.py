@@ -38,3 +38,13 @@ SETTLE_Y_PUSH_THRESH   = 0.28   # |y| > this → object was pushed off belt side
 
 # ── Vision ─────────────────────────────────────────────────────────────────
 CAMERA_NAME        = "side_camera"
+CAMERA_X           = 0.40    # world-X of the camera; detection window centred here
+CAMERA_DETECT_WIN  = 0.07    # m  — ±window around CAMERA_X to trigger a render
+VISION_EVERY_STEPS = 5       # render every N sim steps  (= 0.010 s at dt=0.002)
+RENDER_W           = 320
+RENDER_H           = 240
+
+# HSV colour ranges (OpenCV H: 0–180, S/V: 0–255)
+#   Pure-red MuJoCo material (1,0,0) → H≈0, S=255, V=255
+#   Pure-yellow (1,1,0)             → H≈30, S=255, V=255
+HSV_RED_LO1    = np.array([  0, 120,  80], np.uint8)
