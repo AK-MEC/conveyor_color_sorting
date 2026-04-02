@@ -19,3 +19,10 @@
     ║    Bin floor top           :  z = 0.020 m                       ║
     ║    Object rest in bin      :  z = 0.050 m                       ║
     ║                                                                  ║
+    ║  Pusher geometry (world-frame, both pushers identical):         ║
+    ║    Body pos Y  :  +0.20 m  (outside +Y rail at Y=+0.138)       ║
+    ║    Slide axis  :  world Y                                       ║
+    ║    q = 0.00    :  retracted, face at Y ≈ +0.19  (clear)        ║
+    ║    q = −0.45   :  extended,  face at Y ≈ −0.26  (past belt)    ║
+    ╚══════════════════════════════════════════════════════════════════╝
+  -->
