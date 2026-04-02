@@ -12,3 +12,10 @@
     ║    pusher_red   – slide actuator at X=0.80, fires on RED        ║
     ║    pusher_yellow– slide actuator at X=1.30, fires on YELLOW     ║
     ║                                                                  ║
+    ║  Geometry reference (all world-frame)                           ║
+    ║    Belt floor top surface  :  z = 0.526 m                       ║
+    ║    Object half-height      :  0.030 m  (60×60×60 mm cube)      ║
+    ║    Object rest on belt     :  z = 0.556 m  ← SPAWN_Z           ║
+    ║    Bin floor top           :  z = 0.020 m                       ║
+    ║    Object rest in bin      :  z = 0.050 m                       ║
+    ║                                                                  ║
