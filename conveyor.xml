@@ -68,3 +68,10 @@
     <material name="obj0_mat" rgba="1 0 0 1"/>
     <material name="obj1_mat" rgba="0 0 1 1"/>
     <material name="obj2_mat" rgba="1 1 0 1"/>
+    <material name="obj3_mat" rgba="1 0 0 1"/>
+    <material name="obj4_mat" rgba="0 0 1 1"/>
+    <material name="obj5_mat" rgba="1 1 0 1"/>
+    <material name="obj6_mat" rgba="1 0 0 1"/>
+    <material name="obj7_mat" rgba="0 0 1 1"/>
+    <material name="obj8_mat" rgba="1 1 0 1"/>
+    <material name="obj9_mat" rgba="1 0 0 1"/>
