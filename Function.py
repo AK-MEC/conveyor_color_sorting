@@ -108,3 +108,13 @@ IDLE_POS: dict[int, list[float]] = {
 }
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  detect_color
+# ═══════════════════════════════════════════════════════════════════════════
+
+def detect_color(frame_bgr: np.ndarray) -> str:
+    """
+    Identify the dominant conveyor-object colour in a BGR camera frame.
+
+    Strategy:
+      • Use the middle 60 % (both axes) of the frame as the ROI.
