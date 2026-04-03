@@ -88,3 +88,13 @@ PUSHER_RETRACTED  =  0.00
 PUSH_HOLD_TIME    =  0.8   # s — đủ để vật clear belt, pusher retract kịp trước object tiếp theo
 
 # Retract khi object đã qua rìa belt đủ xa để có momentum vào bin
+# RED -0.38 → object center -0.16 ; YELLOW -0.42 → object center -0.20
+# Dùng threshold 0.22 để chắc chắn object đã có vận tốc đủ trước khi retract
+PUSH_CLEAR_Y      =  0.22  # m  (tăng từ 0.13 → giữ pusher lâu hơn, tích momentum tốt hơn)
+
+# ── Initial staging positions (Phase-1 only) ──────────────────────────────
+_Z_IDLE = 0.050
+IDLE_POS: dict[int, list[float]] = {
+    0: [0.7625, -0.4375, _Z_IDLE],  # Red bin 2×2
+    3: [0.8375, -0.4375, _Z_IDLE],
+    6: [0.7625, -0.3625, _Z_IDLE],

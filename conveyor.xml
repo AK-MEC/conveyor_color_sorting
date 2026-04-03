@@ -61,3 +61,10 @@
               texrepeat="8 4"   specular="0.7" shininess="0.6"
               rgba="1 1 1 1"/>
     <material name="ground_mat"  texture="grid_tex"
+              texrepeat="24 24" specular="0.05" shininess="0.03"
+              rgba="1 1 1 1"/>
+
+    <!-- Object materials: pattern R B Y R B Y R B Y R -->
+    <material name="obj0_mat" rgba="1 0 0 1"/>
+    <material name="obj1_mat" rgba="0 0 1 1"/>
+    <material name="obj2_mat" rgba="1 1 0 1"/>
