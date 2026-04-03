@@ -54,3 +54,10 @@
     <material name="belt_mat"    texture="belt_tex"
               texrepeat="20 1"   specular="0.05" shininess="0.03"
               rgba="0.12 0.48 0.16 1"/>
+    <material name="frame_mat"   texture="metal_tex"
+              specular="0.4"    shininess="0.25"
+              rgba=".48 .50 .52 1"/>
+    <material name="drum_mat"    texture="drum_tex"
+              texrepeat="8 4"   specular="0.7" shininess="0.6"
+              rgba="1 1 1 1"/>
+    <material name="ground_mat"  texture="grid_tex"

@@ -78,3 +78,13 @@ YELLOW_OBJECTS    = frozenset([2, 5, 8])   # index vật màu vàng (cố địn
 
 # Stroke geometry (body Y=0.20, face half-thick=0.010, object half-size=0.030):
 #   face_front = 0.20 + q - 0.010
+#   object_center_Y = face_front + 0.030 = 0.22 + q
+#
+#   RED    q=-0.38 → face Y≈-0.19, object center ≈ -0.16  (đủ momentum vào red bin Y=-0.40)
+#   YELLOW q=-0.42 → face Y≈-0.23, object center ≈ -0.20  (đủ momentum vào yellow bin Y=-0.40)
+PUSHER_RED_EXTENDED    = -0.24 # tăng từ -0.20: đẩy mạnh hơn, object bay vào red bin
+PUSHER_YELLOW_EXTENDED = -0.24 # tăng từ -0.30: đẩy đủ xa để object rơi vào yellow bin
+PUSHER_RETRACTED  =  0.00
+PUSH_HOLD_TIME    =  0.8   # s — đủ để vật clear belt, pusher retract kịp trước object tiếp theo
+
+# Retract khi object đã qua rìa belt đủ xa để có momentum vào bin
