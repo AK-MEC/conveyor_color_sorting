@@ -48,3 +48,13 @@ RENDER_H           = 240
 #   Pure-red MuJoCo material (1,0,0) → H≈0, S=255, V=255
 #   Pure-yellow (1,1,0)             → H≈30, S=255, V=255
 HSV_RED_LO1    = np.array([  0, 120,  80], np.uint8)
+HSV_RED_HI1    = np.array([ 10, 255, 255], np.uint8)
+HSV_RED_LO2    = np.array([168, 120,  80], np.uint8)   # hue wraps near 180
+HSV_RED_HI2    = np.array([180, 255, 255], np.uint8)
+HSV_YELLOW_LO  = np.array([ 22, 120,  80], np.uint8)
+HSV_YELLOW_HI  = np.array([ 38, 255, 255], np.uint8)
+COLOR_MIN_PX   = 60   # minimum pixels in ROI to confirm a detection
+
+# ── Pusher constants ───────────────────────────────────────────────────────
+#
+#  Geometry tính toán:
