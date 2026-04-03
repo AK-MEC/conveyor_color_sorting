@@ -40,3 +40,10 @@
   <!-- ════════════════════════════════════════════════════════════════
        ASSET
   ════════════════════════════════════════════════════════════════ -->
+  <asset>
+    <mesh name="simlify" file="simlify.stl" scale="0.001 0.001 0.001"/>
+
+    <texture name="belt_tex"  type="2d" file="belt_stripe.png"/>
+    <texture name="metal_tex" type="2d" builtin="flat"
+             rgb1=".48 .50 .52" width="1" height="1"/>
+    <texture name="drum_tex"  type="2d" builtin="checker"

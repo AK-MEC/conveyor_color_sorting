@@ -58,3 +58,13 @@ COLOR_MIN_PX   = 60   # minimum pixels in ROI to confirm a detection
 # ── Pusher constants ───────────────────────────────────────────────────────
 #
 #  Geometry tính toán:
+#    Pusher body world Y = 0.20 + q   (q âm khi extend)
+#    Face front Y        = 0.20 + q - 0.010   (half-thickness mặt = 0.010)
+#    Object center Y     = face_front + 0.030  (half-size vật)
+#
+#    Để object center qua rìa belt (Y = -0.125) cần margin:
+#      Object center target = -0.22
+#      Face front target    = -0.22 - 0.030 = -0.25
+#      q = face_front - 0.20 + 0.010 = -0.25 - 0.20 + 0.010 = -0.44
+#    → dùng PUSHER_EXTENDED = -0.42  (face → -0.23, object center → -0.20)
+#
