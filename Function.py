@@ -68,3 +68,13 @@ COLOR_MIN_PX   = 60   # minimum pixels in ROI to confirm a detection
 #      q = face_front - 0.20 + 0.010 = -0.25 - 0.20 + 0.010 = -0.44
 #    → dùng PUSHER_EXTENDED = -0.42  (face → -0.23, object center → -0.20)
 #
+PUSHER_RED_X      = 0.80
+PUSHER_YELLOW_X   = 1.480  # body pos của pusher yellow trong XML
+
+# Ground-truth detection point cho YELLOW — detect gần pusher thay vì từ camera X=0.40
+# Delay chỉ (1.480−1.35)/0.200 = 0.65 s thay vì 5.4 s → ít sai lệch hơn nhiều
+YELLOW_DETECT_X   = 1.35
+YELLOW_OBJECTS    = frozenset([2, 5, 8])   # index vật màu vàng (cố định theo material)
+
+# Stroke geometry (body Y=0.20, face half-thick=0.010, object half-size=0.030):
+#   face_front = 0.20 + q - 0.010

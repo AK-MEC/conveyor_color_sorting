@@ -47,3 +47,10 @@
     <texture name="metal_tex" type="2d" builtin="flat"
              rgb1=".48 .50 .52" width="1" height="1"/>
     <texture name="drum_tex"  type="2d" builtin="checker"
+             rgb1=".18 .18 .20" rgb2=".28 .28 .32" width="64" height="64"/>
+    <texture name="grid_tex"  type="2d" builtin="checker"
+             rgb1=".20 .20 .20" rgb2=".26 .26 .26" width="64" height="64"/>
+
+    <material name="belt_mat"    texture="belt_tex"
+              texrepeat="20 1"   specular="0.05" shininess="0.03"
+              rgba="0.12 0.48 0.16 1"/>
