@@ -110,3 +110,10 @@
             solimp="0.98 0.999 0.001 0.5 2"
             solref="0.010 1"
             contype="1" conaffinity="1"/>
+    </default>
+
+    <!-- Pusher face: low friction so object slides off belt cleanly -->
+    <default class="pusher_face">
+      <geom type="box"
+            condim="3"
+            friction="0.3 0.003 0.0001"

@@ -158,3 +158,13 @@ def detect_color(frame_bgr: np.ndarray) -> str:
 
     n_red    = int(cv2.countNonZero(mask_red))
     n_yellow = int(cv2.countNonZero(mask_yellow))
+
+    if n_red >= COLOR_MIN_PX and n_red >= n_yellow:
+        return 'R'
+    if n_yellow >= COLOR_MIN_PX:
+        return 'Y'
+    return 'NONE'
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  PushScheduler
