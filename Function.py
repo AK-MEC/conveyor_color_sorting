@@ -118,3 +118,13 @@ def detect_color(frame_bgr: np.ndarray) -> str:
 
     Strategy:
       • Use the middle 60 % (both axes) of the frame as the ROI.
+        The side_camera is angled so objects at CAMERA_X appear in
+        the upper-centre region; searching 20–80 % of height catches them.
+      • Convert ROI to HSV and apply separate masks for red (two hue
+        ranges because red wraps near H=0/180) and yellow.
+      • Return 'R', 'Y', or 'NONE'.  Blue objects return 'NONE' — no
+        push is scheduled and they fall off the belt end naturally.
+
+    Parameters
+    ----------
+    frame_bgr : np.ndarray
