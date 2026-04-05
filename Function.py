@@ -128,3 +128,13 @@ def detect_color(frame_bgr: np.ndarray) -> str:
     Parameters
     ----------
     frame_bgr : np.ndarray
+        BGR image from cv2.cvtColor(renderer.render(), cv2.COLOR_RGB2BGR).
+
+    Returns
+    -------
+    'R'    – red object detected in ROI
+    'Y'    – yellow object detected in ROI
+    'NONE' – no sortable colour found (blue object or empty belt)
+    """
+    h, w = frame_bgr.shape[:2]
+

@@ -89,3 +89,10 @@
 
     <joint limited="false" damping="0.02" armature="0.001"/>
 
+    <!-- Conveyor objects: 60×60×60 mm cube -->
+    <default class="flat_obj">
+      <geom type="box"
+            size="0.030 0.030 0.030"
+            condim="4"
+            friction="0.75 0.006 0.0004"
+            solimp="0.97 0.999 0.002 0.5 2"
