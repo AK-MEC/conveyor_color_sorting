@@ -188,3 +188,13 @@ class PushScheduler:
 
     Cải tiến so với bản gốc:
       - Retract thông minh: chờ vật thực sự ra khỏi belt (|Y| > PUSH_CLEAR_Y)
+        thay vì dùng timer cố định → đảm bảo vật không bị kéo ngược lại.
+      - Safety fallback: nếu sau PUSH_HOLD_TIME vật vẫn chưa clear, retract luôn
+        để pusher không kẹt vĩnh viễn.
+
+    Usage:
+        schedule(color, sim_time, obj_idx)  — called on each detection
+        step(sim_time)                      — called every sim step
+        active_pushes                       — set[int] of object indices
+                                              currently being pushed
+    """
