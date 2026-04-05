@@ -178,3 +178,13 @@ class _PushEvent:
     obj_idx:     int     # object đang bị đẩy (exempt khỏi kinematic override)
     qpos_adr:    int     # địa chỉ qpos của vật để monitor Y
     color:       str     # 'R' hoặc 'Y' — để chọn đúng stroke khi fire
+    fired:       bool = False
+    retracted:   bool = False
+
+
+class PushScheduler:
+    """
+    Translates vision detections into timed pusher actuations.
+
+    Cải tiến so với bản gốc:
+      - Retract thông minh: chờ vật thực sự ra khỏi belt (|Y| > PUSH_CLEAR_Y)
