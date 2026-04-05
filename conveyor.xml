@@ -96,3 +96,10 @@
             condim="4"
             friction="0.75 0.006 0.0004"
             solimp="0.97 0.999 0.002 0.5 2"
+            solref="0.010 1"
+            density="600"
+            contype="1" conaffinity="1"/>
+      <joint type="free" damping="0.0" armature="0.0"/>
+    </default>
+
+    <!-- Bin walls -->

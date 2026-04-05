@@ -138,3 +138,13 @@ def detect_color(frame_bgr: np.ndarray) -> str:
     """
     h, w = frame_bgr.shape[:2]
 
+    # ROI: centre 60 % of frame in both dimensions
+    y1, y2 = int(h * 0.20), int(h * 0.80)
+    x1, x2 = int(w * 0.20), int(w * 0.80)
+    roi = frame_bgr[y1:y2, x1:x2]
+
+    if roi.size == 0:
+        return 'NONE'
+
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+
