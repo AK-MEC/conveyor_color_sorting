@@ -103,3 +103,10 @@
     </default>
 
     <!-- Bin walls -->
+    <default class="bin_wall">
+      <geom type="box"
+            condim="3"
+            friction="0.4 0.004 0.0002"
+            solimp="0.98 0.999 0.001 0.5 2"
+            solref="0.010 1"
+            contype="1" conaffinity="1"/>

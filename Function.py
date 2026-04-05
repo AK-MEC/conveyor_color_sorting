@@ -148,3 +148,13 @@ def detect_color(frame_bgr: np.ndarray) -> str:
 
     hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
 
+    # ── Red mask (two ranges — hue wraps around 0°/180°) ──────────────────
+    mask_r1  = cv2.inRange(hsv, HSV_RED_LO1, HSV_RED_HI1)
+    mask_r2  = cv2.inRange(hsv, HSV_RED_LO2, HSV_RED_HI2)
+    mask_red = cv2.bitwise_or(mask_r1, mask_r2)
+
+    # ── Yellow mask ────────────────────────────────────────────────────────
+    mask_yellow = cv2.inRange(hsv, HSV_YELLOW_LO, HSV_YELLOW_HI)
+
+    n_red    = int(cv2.countNonZero(mask_red))
+    n_yellow = int(cv2.countNonZero(mask_yellow))
