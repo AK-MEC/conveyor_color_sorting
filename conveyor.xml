@@ -159,3 +159,10 @@
           rgba=".30 .30 .30 1" contype="0" conaffinity="0"/>
 
     <!-- Camera body — đỉnh cột (Z=0.70), nghiêng 47° quanh X để nhìn xuống belt -->
+    <body name="camera_body" pos="0.40 -0.19 0.70" euler="47 0 0">
+      <!-- Housing box -->
+      <geom type="box" size="0.028 0.022 0.042"
+            rgba=".10 .10 .10 1" contype="0" conaffinity="0"/>
+      <!-- Lens barrel (along body -Z = optical axis) -->
+      <geom type="cylinder" size="0.014 0.016" pos="0 0 -0.056"
+            rgba=".07 .07 .07 1" contype="0" conaffinity="0"/>

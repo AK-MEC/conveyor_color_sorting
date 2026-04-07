@@ -228,3 +228,13 @@ class PushScheduler:
         self._pending:   list[_PushEvent]   = []
 
         # Objects currently under active push — exempt from belt kinematic vy=0
+        self.active_pushes: set[int] = set()
+
+        # BUG-FIX (yellow ghost push): sim_time lúc event FIRE cho từng obj_idx.
+        # Dùng để chặn re-schedule vật vừa bị đẩy cho đến khi nó được recycle
+        # (manager.spawn_time[i] > _last_fire_sim_time[i]).
+        self._last_fire_sim_time: dict[int, float] = {}
+
+        # Ensure both pushers start retracted
+        for aid in self._act_id.values():
+            data.ctrl[aid] = PUSHER_RETRACTED
