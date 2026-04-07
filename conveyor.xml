@@ -173,3 +173,10 @@
       <geom type="sphere" size="0.005" pos="0 0.024 0.030"
             rgba=".05 .90 .15 1" contype="0" conaffinity="0"/>
       <!-- Camera sensor — aligned with body frame -->
+      <camera name="side_camera" fovy="50"/>
+    </body>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CONVEYOR FRAME ASSEMBLY  (visual only, no collision)
+    ═══════════════════════════════════════════════════════════ -->
+    <body name="conveyor_frame" pos="0 0 0">

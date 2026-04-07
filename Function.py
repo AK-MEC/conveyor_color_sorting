@@ -248,3 +248,13 @@ class PushScheduler:
           1. Delay tính từ X thực tế của vật lúc detect → pusher fire đúng lúc.
           2. BUG-FIX (yellow ghost): chặn re-schedule nếu vật này đã được fired
              trong chu kỳ belt hiện tại (chưa được recycle).
+          3. BUG-FIX (red miss): thay vì chặn hoàn toàn khi cùng act_id pending,
+             chỉ chặn khi fire_time MỚI bị overlap với max_retract của event CŨ.
+             → 2 vật đỏ liên tiếp có fire_time không overlap → cả 2 đều được schedule.
+        """
+        if color not in ('R', 'Y'):
+            return   # Blue — không đẩy
+
+        act_id = self._act_id[color]
+
+        # ── Guard 1: không schedule lại cùng một obj_idx đang có event pending ──
