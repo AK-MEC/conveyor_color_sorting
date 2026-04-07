@@ -187,3 +187,10 @@
             contype="0" conaffinity="0"
             material="frame_mat"/>
 
+      <!-- Leg pairs -->
+      <geom type="box" size=".018 .018 .237" pos=".10  -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="box" size=".018 .018 .237" pos=".10   .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="box" size=".018 .018 .237" pos="1.00 -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="box" size=".018 .018 .237" pos="1.00  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="box" size=".018 .018 .237" pos="1.90 -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="box" size=".018 .018 .237" pos="1.90  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>

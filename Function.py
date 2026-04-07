@@ -268,3 +268,13 @@ class PushScheduler:
                 return   # Chưa recycle — chặn
 
         # Tính delay chính xác từ vị trí X hiện tại của vật
+        pusher_x  = PUSHER_RED_X if color == 'R' else PUSHER_YELLOW_X
+        delay     = max(0.05, (pusher_x - obj_x) / BELT_VELOCITY)
+        fire_time = det_time + delay
+        max_ret   = fire_time + PUSH_HOLD_TIME   # safety fallback
+
+        # ── Guard 3 (red-miss fix): chỉ chặn nếu fire_time MỚI overlap với
+        #    max_retract của event cũ (cùng actuator) — không chặn nếu không overlap ─
+        for ev in self._pending:
+            if ev.act_id == act_id and fire_time <= ev.max_retract:
+                return   # Xung đột thực sự — pusher còn đang extend
