@@ -258,3 +258,13 @@ class PushScheduler:
         act_id = self._act_id[color]
 
         # ── Guard 1: không schedule lại cùng một obj_idx đang có event pending ──
+        if any(ev.obj_idx == obj_idx for ev in self._pending):
+            return
+
+        # ── Guard 2 (yellow ghost-push fix): nếu obj này đã được fired trước đó,
+        #    chỉ cho schedule lại khi nó đã được recycle (spawn_time mới hơn) ──────
+        if obj_idx in self._last_fire_sim_time:
+            if self._mgr.spawn_time[obj_idx] <= self._last_fire_sim_time[obj_idx]:
+                return   # Chưa recycle — chặn
+
+        # Tính delay chính xác từ vị trí X hiện tại của vật
