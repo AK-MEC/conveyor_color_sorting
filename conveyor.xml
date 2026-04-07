@@ -138,3 +138,10 @@
 
     <!-- Lighting -->
     <light name="sun"  directional="true"
+           diffuse=".85 .85 .85" specular=".2 .2 .2"
+           pos="2 -2 6" dir="-.3 .4 -1" castshadow="true"/>
+    <light name="fill" directional="false" diffuse=".35 .35 .38"
+           pos="-1 3 4" dir=".4 -.5 -1" castshadow="false"/>
+    <light name="top"  directional="false" diffuse=".25 .25 .25"
+           pos="1 0 5"  dir="0 0 -1"     castshadow="false"/>
+

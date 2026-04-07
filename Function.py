@@ -198,3 +198,13 @@ class PushScheduler:
         active_pushes                       — set[int] of object indices
                                               currently being pushed
     """
+
+    def __init__(self, model: mujoco.MjModel, data: mujoco.MjData,
+                 manager: "ObjectQueueManager") -> None:
+        self.model   = model
+        self.data    = data
+        self._mgr    = manager   # cần để đọc spawn_time khi guard yellow re-push
+
+        # Cache actuator ctrl indices by name
+        def _act(name: str) -> int:
+            aid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, name)
