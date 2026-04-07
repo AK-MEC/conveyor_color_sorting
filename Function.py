@@ -218,3 +218,13 @@ class PushScheduler:
         }
 
         # Cache qpos addresses của tất cả objects để monitor Y khi đẩy
+        self._obj_qpos_adr: list[int] = []
+        for i in range(N_OBJECTS):
+            jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, f"obj{i}_free")
+            if jid < 0:
+                raise RuntimeError(f"Joint 'obj{i}_free' not found in model.")
+            self._obj_qpos_adr.append(model.jnt_qposadr[jid])
+
+        self._pending:   list[_PushEvent]   = []
+
+        # Objects currently under active push — exempt from belt kinematic vy=0
