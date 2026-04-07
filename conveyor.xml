@@ -166,3 +166,10 @@
       <!-- Lens barrel (along body -Z = optical axis) -->
       <geom type="cylinder" size="0.014 0.016" pos="0 0 -0.056"
             rgba=".07 .07 .07 1" contype="0" conaffinity="0"/>
+      <!-- Lens glass (blue tint) -->
+      <geom type="cylinder" size="0.011 0.003" pos="0 0 -0.075"
+            rgba=".25 .45 .90 0.75" contype="0" conaffinity="0"/>
+      <!-- Status LED (green) -->
+      <geom type="sphere" size="0.005" pos="0 0.024 0.030"
+            rgba=".05 .90 .15 1" contype="0" conaffinity="0"/>
+      <!-- Camera sensor — aligned with body frame -->

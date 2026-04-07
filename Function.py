@@ -238,3 +238,13 @@ class PushScheduler:
         # Ensure both pushers start retracted
         for aid in self._act_id.values():
             data.ctrl[aid] = PUSHER_RETRACTED
+
+    def schedule(self, color: str, det_time: float, obj_idx: int,
+                 obj_x: float) -> None:
+        """
+        Schedule a push event cho `color` được detect tại `det_time`.
+
+        Fixes (v2):
+          1. Delay tính từ X thực tế của vật lúc detect → pusher fire đúng lúc.
+          2. BUG-FIX (yellow ghost): chặn re-schedule nếu vật này đã được fired
+             trong chu kỳ belt hiện tại (chưa được recycle).
