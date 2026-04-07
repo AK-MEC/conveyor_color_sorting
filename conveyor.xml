@@ -145,3 +145,10 @@
     <light name="top"  directional="false" diffuse=".25 .25 .25"
            pos="1 0 5"  dir="0 0 -1"     castshadow="false"/>
 
+    <!-- ═══════════════════════════════════════════════════════════
+         SIDE CAMERA MOUNT
+         ─────────────────────────────────────────────────────────
+         Physical body at (0.40, -0.50, 0.70) tilted 45 deg down.
+         Vertical post + horizontal arm mount it beside the belt.
+         Camera sensor stays at the same world pos/euler as before.
+    ═══════════════════════════════════════════════════════════ -->

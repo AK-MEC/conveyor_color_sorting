@@ -208,3 +208,13 @@ class PushScheduler:
         # Cache actuator ctrl indices by name
         def _act(name: str) -> int:
             aid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, name)
+            if aid < 0:
+                raise RuntimeError(f"Actuator '{name}' not found in model.")
+            return aid
+
+        self._act_id: dict[str, int] = {
+            'R': _act("act_push_red"),
+            'Y': _act("act_push_yellow"),
+        }
+
+        # Cache qpos addresses của tất cả objects để monitor Y khi đẩy
