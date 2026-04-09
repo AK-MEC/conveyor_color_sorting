@@ -194,3 +194,10 @@
       <geom type="box" size=".018 .018 .237" pos="1.00  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="box" size=".018 .018 .237" pos="1.90 -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="box" size=".018 .018 .237" pos="1.90  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
+
+      <!-- Rails & bed -->
+      <geom name="rail_l" type="box" size="1.0 .012 .022" pos="1.0 -.138 .474" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom name="rail_r" type="box" size="1.0 .012 .022" pos="1.0  .138 .474" material="frame_mat" contype="0" conaffinity="0"/>
+      <geom name="bed"    type="box" size="1.0 .122 .005" pos="1.0  .000 .487" material="frame_mat" contype="0" conaffinity="0"/>
+
+      <!-- Drive drum -->

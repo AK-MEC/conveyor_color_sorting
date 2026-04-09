@@ -278,3 +278,13 @@ class PushScheduler:
         for ev in self._pending:
             if ev.act_id == act_id and fire_time <= ev.max_retract:
                 return   # Xung đột thực sự — pusher còn đang extend
+
+        self._pending.append(_PushEvent(
+            fire_time   = fire_time,
+            max_retract = max_ret,
+            act_id      = act_id,
+            obj_idx     = obj_idx,
+            qpos_adr    = self._obj_qpos_adr[obj_idx],
+            color       = color,
+        ))
+
