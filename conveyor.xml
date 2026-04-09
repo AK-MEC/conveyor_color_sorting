@@ -222,3 +222,10 @@
 
       <!-- Belt physics floor (invisible) -->
       <geom name="belt_floor" type="box"
+            size="1.0 0.125 0.002"
+            pos="1.0 0 0.524"
+            condim="4"
+            friction="1.4 0.008 0.0006"
+            solimp="0.97 0.999 0.002 0.5 2"
+            solref="0.010 1"
+            contype="1" conaffinity="1"

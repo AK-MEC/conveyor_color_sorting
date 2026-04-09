@@ -318,3 +318,13 @@ class PushScheduler:
                 self.data.ctrl[ev.act_id] = stroke
                 self.active_pushes.add(ev.obj_idx)
                 # BUG-FIX (yellow ghost): ghi nhận thời điểm fire để guard re-schedule
+                self._last_fire_sim_time[ev.obj_idx] = sim_time
+                ev.fired = True
+
+            # ── Bước 2: Kiểm tra điều kiện retract ───────────────────────────
+            if ev.fired and not ev.retracted:
+                # Chờ ít nhất 0.3s sau fire để pusher extend xong
+                min_hold_ok  = sim_time >= ev.fire_time + 0.3
+                obj_cleared  = min_hold_ok and self._obj_clear_of_belt(ev)
+                time_expired = sim_time >= ev.max_retract
+
