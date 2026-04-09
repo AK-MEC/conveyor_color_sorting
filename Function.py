@@ -298,3 +298,13 @@ class PushScheduler:
 
     def step(self, sim_time: float) -> None:
         """
+        Fire / retract pushers theo logic thông minh.
+        Gọi mỗi simulation step (sau mj_step).
+
+          Bước 1: Khi đến fire_time  → extend pusher (PUSHER_EXTENDED).
+          Bước 2: Sau khi fired, mỗi bước kiểm tra Y của vật:
+                    - Phải đợi ít nhất 0.3s sau fire trước khi check clear
+                      (để pusher có thời gian extend thực sự).
+                    - |Y| > PUSH_CLEAR_Y  → vật đã ra belt → retract ngay.
+                    - sim_time > max_retract → safety timeout → retract luôn.
+          Bước 3: Sau retract → xoá event khỏi pending list.

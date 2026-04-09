@@ -208,3 +208,10 @@
       <geom type="cylinder" size=".010 .028" pos="0.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
 
       <!-- Passive drum -->
+      <geom type="cylinder" size=".026 .126" pos="2.0  0.000 0.500" euler="90 0 0" material="drum_mat"  contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".031 .006" pos="2.0  .133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".031 .006" pos="2.0 -.133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".010 .028" pos="2.0  .165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".010 .028" pos="2.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+
+      <!-- Belt visual (texture scroll, no collision) -->
