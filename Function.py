@@ -328,3 +328,13 @@ class PushScheduler:
                 obj_cleared  = min_hold_ok and self._obj_clear_of_belt(ev)
                 time_expired = sim_time >= ev.max_retract
 
+                if obj_cleared or time_expired:
+                    self.data.ctrl[ev.act_id] = PUSHER_RETRACTED
+                    self.active_pushes.discard(ev.obj_idx)
+                    ev.retracted = True
+
+            if ev.retracted:
+                done.append(ev)
+
+        for ev in done:
+            self._pending.remove(ev)
