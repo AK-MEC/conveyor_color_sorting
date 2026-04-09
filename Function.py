@@ -348,3 +348,13 @@ class PushScheduler:
 
 class ObjectQueueManager:
     """
+    FIFO infinite conveyor loop.
+
+    idle_queue   — initial pool (Phase 1). Drained once at startup.
+    fallen_queue — FIFO of settled objects waiting to be re-spawned.
+
+    Settle condition (per 'active' object, evaluated in step()):
+      off_belt = x > BELT_X_MAX          (fell off belt end)
+             OR |y| > SETTLE_Y_PUSH_THRESH  (pushed sideways into bin)
+      settled  = off_belt AND z < SETTLE_Z AND |v| < SETTLE_SPEED
+               AND active for >= SETTLE_MIN_ACTIVE_TIME

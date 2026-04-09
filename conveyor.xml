@@ -243,3 +243,10 @@
       <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".85 .08 .08 1"/>
       <geom class="bin_wall" size=".255 .012 .090" pos="0 -.148 .100" rgba=".85 .08 .08 1"/>
       <geom class="bin_wall" size=".255 .012 .090" pos="0  .148 .100" rgba=".85 .08 .08 1"/>
+      <geom class="bin_wall" size=".012 .148 .045" pos=".255 0 .055"  rgba=".85 .08 .08 1"/>
+    </body>
+
+    <!-- BLUE BIN  (X=2.25, Y=0.00) -->
+    <body name="blue_bin" pos="2.25 0.00 0">
+      <geom class="bin_wall" size=".255 .148 .010" pos="0 0 .010"    rgba=".08 .18 .82 1"/>
+      <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".08 .18 .82 1"/>
