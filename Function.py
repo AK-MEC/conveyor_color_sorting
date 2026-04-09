@@ -338,3 +338,13 @@ class PushScheduler:
 
         for ev in done:
             self._pending.remove(ev)
+
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  ObjectQueueManager
+# ═══════════════════════════════════════════════════════════════════════════
+
+class ObjectQueueManager:
+    """
