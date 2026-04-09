@@ -308,3 +308,13 @@ class PushScheduler:
                     - |Y| > PUSH_CLEAR_Y  → vật đã ra belt → retract ngay.
                     - sim_time > max_retract → safety timeout → retract luôn.
           Bước 3: Sau retract → xoá event khỏi pending list.
+        """
+        done = []
+        for ev in self._pending:
+
+            # ── Bước 1: Fire — mở rộng pusher ────────────────────────────────
+            if not ev.fired and sim_time >= ev.fire_time:
+                stroke = PUSHER_RED_EXTENDED if ev.color == 'R' else PUSHER_YELLOW_EXTENDED
+                self.data.ctrl[ev.act_id] = stroke
+                self.active_pushes.add(ev.obj_idx)
+                # BUG-FIX (yellow ghost): ghi nhận thời điểm fire để guard re-schedule

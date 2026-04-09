@@ -215,3 +215,10 @@
       <geom type="cylinder" size=".010 .028" pos="2.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
 
       <!-- Belt visual (texture scroll, no collision) -->
+      <geom name="belt_visual" type="box" size="1.0 0.122 0.002"
+            pos="1.0 0 0.524"
+            contype="0" conaffinity="0"
+            material="belt_mat"/>
+
+      <!-- Belt physics floor (invisible) -->
+      <geom name="belt_floor" type="box"
