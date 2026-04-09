@@ -288,3 +288,13 @@ class PushScheduler:
             color       = color,
         ))
 
+    def _obj_clear_of_belt(self, ev: _PushEvent) -> bool:
+        """
+        Trả về True khi vật đã ra khỏi belt hoàn toàn.
+        Điều kiện: |Y| > PUSH_CLEAR_Y (vật đã vượt qua rail -Y = -0.138).
+        """
+        y = float(self.data.qpos[ev.qpos_adr + 1])
+        return abs(y) > PUSH_CLEAR_Y
+
+    def step(self, sim_time: float) -> None:
+        """

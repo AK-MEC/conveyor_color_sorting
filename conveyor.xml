@@ -201,3 +201,10 @@
       <geom name="bed"    type="box" size="1.0 .122 .005" pos="1.0  .000 .487" material="frame_mat" contype="0" conaffinity="0"/>
 
       <!-- Drive drum -->
+      <geom type="cylinder" size=".026 .126" pos="0.0  0.000 0.500" euler="90 0 0" material="drum_mat"  contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".031 .006" pos="0.0  .133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".031 .006" pos="0.0 -.133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".010 .028" pos="0.0  .165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+      <geom type="cylinder" size=".010 .028" pos="0.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
+
+      <!-- Passive drum -->
