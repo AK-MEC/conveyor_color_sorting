@@ -388,3 +388,13 @@ class ObjectQueueManager:
         # Park all objects at staging positions
         for i in range(N_OBJECTS):
             self._write_pose(i, IDLE_POS[i], SPAWN_QUAT)
+
+    # ── Low-level helpers ──────────────────────────────────────────────────
+
+    def _write_pose(self, idx: int,
+                    pos:  list | np.ndarray,
+                    quat: list | np.ndarray | None = None) -> None:
+        qa = self.qpos_adr[idx]
+        self.data.qpos[qa:qa + 3] = pos
+        if quat is not None:
+            self.data.qpos[qa + 3:qa + 7] = quat
