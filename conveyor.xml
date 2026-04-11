@@ -278,3 +278,10 @@
     <geom type="box" size="0.040 0.040 0.008"
           pos="0.80 0.38 0.008"
           rgba=".25 .25 .25 1" contype="0" conaffinity="0"/>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PUSHER YELLOW PEDESTAL  —  vertical post below pusher_yellow bracket
+         ─────────────────────────────────────────────────────────
+         Bracket world pos: (1.480, 0.38, 0.60)
+         Post: z=0 → z=0.60, half-height=0.300, centre z=0.300
+    ═══════════════════════════════════════════════════════════ -->

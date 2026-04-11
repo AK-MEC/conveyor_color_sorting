@@ -398,3 +398,13 @@ class ObjectQueueManager:
         self.data.qpos[qa:qa + 3] = pos
         if quat is not None:
             self.data.qpos[qa + 3:qa + 7] = quat
+        self.data.qvel[self.qvel_adr[idx]:self.qvel_adr[idx] + 6] = 0.0
+
+    def _read_pos(self, idx: int) -> tuple[float, float, float]:
+        qa = self.qpos_adr[idx]
+        return (float(self.data.qpos[qa]),
+                float(self.data.qpos[qa + 1]),
+                float(self.data.qpos[qa + 2]))
+
+    def _read_speed(self, idx: int) -> float:
+        va = self.qvel_adr[idx]
