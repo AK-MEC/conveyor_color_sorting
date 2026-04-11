@@ -438,3 +438,13 @@ class ObjectQueueManager:
         """
         excluded = excluded or set()
 
+        for i in range(N_OBJECTS):
+            if self.state[i] != 'active':
+                continue
+            if i in excluded:
+                continue   # pusher is in control — do not override
+
+            qa      = self.qpos_adr[i]
+            x, y, z = (float(self.data.qpos[qa]),
+                       float(self.data.qpos[qa + 1]),
+                       float(self.data.qpos[qa + 2]))

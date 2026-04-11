@@ -306,3 +306,10 @@
     ═══════════════════════════════════════════════════════════ -->
     <body name="pusher_red" pos="0.80 0.20 0.6">
 
+      <!-- Slide joint: range đủ để face đến Y=-0.23 (object center tới -0.20) -->
+      <joint name="pusher_red_slide" type="slide" axis="0 1 0"
+             limited="true" range="-0.45 0.0"
+             damping="80" armature="0.02"/>
+
+      <!-- Pusher face: rộng hơn theo X (0.080) để ít hụt hơn khi timing lệch nhẹ -->
+      <geom class="pusher_face"
