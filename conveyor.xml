@@ -299,3 +299,10 @@
          ─────────────────────────────────────────────────────────
          Body fixed at (0.80, +0.20, 0.556) — +Y side of belt.
          Slide joint along world Y.
+           q = 0.00  → face at Y ≈ +0.19  (retracted, clear of belt)
+           q = −0.45 → face at Y ≈ −0.26  (extended, past belt edge)
+         Visual arm connects face to fixed bracket above rail.
+         Actuator: act_push_red  (position servo, kp=3000)
+    ═══════════════════════════════════════════════════════════ -->
+    <body name="pusher_red" pos="0.80 0.20 0.6">
+

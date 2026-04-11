@@ -428,3 +428,13 @@ class ObjectQueueManager:
 
     def run_conveyor(self, excluded: set[int] | None = None) -> None:
         """
+        Inject vx=BELT_VELOCITY for active objects on the belt surface.
+
+        Parameters
+        ----------
+        excluded : set[int], optional
+            Object indices currently being pushed by a servo pusher.
+            These are skipped so the pusher vy impulse is not zeroed.
+        """
+        excluded = excluded or set()
+
