@@ -358,3 +358,13 @@ class ObjectQueueManager:
              OR |y| > SETTLE_Y_PUSH_THRESH  (pushed sideways into bin)
       settled  = off_belt AND z < SETTLE_Z AND |v| < SETTLE_SPEED
                AND active for >= SETTLE_MIN_ACTIVE_TIME
+
+    run_conveyor(excluded):
+      Belt kinematic override is skipped for objects in `excluded`
+      (objects currently being pushed by a servo pusher).
+    """
+
+    def __init__(self, model: mujoco.MjModel, data: mujoco.MjData) -> None:
+        self.model = model
+        self.data  = data
+
