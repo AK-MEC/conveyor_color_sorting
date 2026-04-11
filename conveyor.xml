@@ -257,3 +257,10 @@
 
     <!-- YELLOW BIN  (X=1.50, Y=−0.40) -->
     <body name="yellow_bin" pos="1.5 -0.5 0">
+      <geom class="bin_wall" size=".255 .148 .010" pos="0 0 .010"    rgba=".92 .80 .00 1"/>
+      <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".92 .80 .00 1"/>
+      <geom class="bin_wall" size=".255 .012 .090" pos="0 -.148 .100" rgba=".92 .80 .00 1"/>
+      <geom class="bin_wall" size=".255 .012 .090" pos="0  .148 .100" rgba=".92 .80 .00 1"/>
+      <geom class="bin_wall" size=".012 .148 .045" pos=".255 0 .055"  rgba=".92 .80 .00 1"/>
+    </body>
+

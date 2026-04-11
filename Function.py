@@ -368,3 +368,13 @@ class ObjectQueueManager:
         self.model = model
         self.data  = data
 
+        self.qpos_adr: list[int] = []
+        self.qvel_adr: list[int] = []
+        for i in range(N_OBJECTS):
+            jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT,
+                                     f"obj{i}_free")
+            if jid < 0:
+                raise RuntimeError(f"Joint 'obj{i}_free' not found in model.")
+            self.qpos_adr.append(model.jnt_qposadr[jid])
+            self.qvel_adr.append(model.jnt_dofadr[jid])
+
