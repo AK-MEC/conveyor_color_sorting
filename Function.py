@@ -378,3 +378,13 @@ class ObjectQueueManager:
             self.qpos_adr.append(model.jnt_qposadr[jid])
             self.qvel_adr.append(model.jnt_dofadr[jid])
 
+        # States: 'idle' | 'active' | 'fallen'
+        self.state:        list[str]              = ['idle'] * N_OBJECTS
+        self.idle_queue:   collections.deque[int] = collections.deque(range(N_OBJECTS))
+        self.fallen_queue: collections.deque[int] = collections.deque()
+        self.last_spawn:   float                  = -SPAWN_INTERVAL
+        self.spawn_time:   dict[int, float]       = {i: 0.0 for i in range(N_OBJECTS)}
+
+        # Park all objects at staging positions
+        for i in range(N_OBJECTS):
+            self._write_pose(i, IDLE_POS[i], SPAWN_QUAT)
