@@ -408,3 +408,13 @@ class ObjectQueueManager:
 
     def _read_speed(self, idx: int) -> float:
         va = self.qvel_adr[idx]
+        vx = float(self.data.qvel[va])
+        vy = float(self.data.qvel[va + 1])
+        vz = float(self.data.qvel[va + 2])
+        return float(np.sqrt(vx*vx + vy*vy + vz*vz))
+
+    # ── Spawn ──────────────────────────────────────────────────────────────
+
+    def _do_spawn(self, idx: int, sim_time: float) -> None:
+        self._write_pose(idx, [SPAWN_X, SPAWN_Y, SPAWN_Z], SPAWN_QUAT)
+        va = self.qvel_adr[idx]
