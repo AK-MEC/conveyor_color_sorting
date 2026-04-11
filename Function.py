@@ -418,3 +418,13 @@ class ObjectQueueManager:
     def _do_spawn(self, idx: int, sim_time: float) -> None:
         self._write_pose(idx, [SPAWN_X, SPAWN_Y, SPAWN_Z], SPAWN_QUAT)
         va = self.qvel_adr[idx]
+        self.data.qvel[va]     = BELT_VELOCITY
+        self.data.qvel[va + 1] = 0.0
+        self.data.qvel[va + 2] = 0.0
+        self.state[idx]       = 'active'
+        self.spawn_time[idx]  = sim_time
+
+    # ── Belt kinematic override ────────────────────────────────────────────
+
+    def run_conveyor(self, excluded: set[int] | None = None) -> None:
+        """

@@ -292,3 +292,10 @@
     <!-- Base plate -->
     <geom type="box" size="0.040 0.040 0.008"
           pos="1.480 0.38 0.008"
+          rgba=".25 .25 .25 1" contype="0" conaffinity="0"/>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PUSHER 1  —  RED objects  (fires at X = 0.80 m)
+         ─────────────────────────────────────────────────────────
+         Body fixed at (0.80, +0.20, 0.556) — +Y side of belt.
+         Slide joint along world Y.
