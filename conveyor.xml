@@ -341,3 +341,10 @@
       <joint name="pusher_yellow_slide" type="slide" axis="0 1 0"
              limited="true" range="-0.45 0.0"
              damping="80" armature="0.02"/>
+
+      <geom class="pusher_face"
+            name="pusher_yellow_face"
+            size="0.080 0.010 0.055"
+            rgba="0.95 0.82 0.05 1.0"/>
+
+      <geom type="box" size="0.006 0.315 0.006" pos="0 0.315 0"

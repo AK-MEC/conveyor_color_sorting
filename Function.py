@@ -488,3 +488,13 @@ class ObjectQueueManager:
             # Off-belt: either past the passive drum OR pushed sideways into bin
             off_belt = (x > BELT_X_MAX) or (abs(y) > SETTLE_Y_PUSH_THRESH)
 
+            if off_belt and z < SETTLE_Z and speed < SETTLE_SPEED:
+                self.state[i] = 'fallen'
+                self.fallen_queue.append(i)
+
+        # ── Spawn timer ────────────────────────────────────────────────────
+        if (sim_time - self.last_spawn) < SPAWN_INTERVAL:
+            return
+
+        if self.idle_queue:
+            idx = self.idle_queue.popleft()
