@@ -313,3 +313,10 @@
 
       <!-- Pusher face: rộng hơn theo X (0.080) để ít hụt hơn khi timing lệch nhẹ -->
       <geom class="pusher_face"
+            name="pusher_red_face"
+            size="0.080 0.010 0.055"
+            rgba="0.90 0.10 0.10 1.0"/>
+
+      <!-- Visual arm (no collision) — dài từ face (Y=0) đến Y=0.630 local
+           → khi extended q=-0.45: arm span world Y=-0.25…+0.38 (bao phủ bệ ở Y=0.38)
+           → khi retracted q=0:    arm span world Y=+0.20…+0.83 (bệ Y=0.38 nằm trong arm) -->

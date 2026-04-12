@@ -448,3 +448,13 @@ class ObjectQueueManager:
             x, y, z = (float(self.data.qpos[qa]),
                        float(self.data.qpos[qa + 1]),
                        float(self.data.qpos[qa + 2]))
+
+            if x > BELT_X_MAX:
+                continue   # past belt end — free-fall, hands off
+
+            on_belt = (BELT_X_MIN <= x <= BELT_X_MAX and
+                       abs(y)     <= BELT_Y_MAX       and
+                       BELT_Z_MIN <= z <= BELT_Z_MAX)
+            if not on_belt:
+                continue
+
