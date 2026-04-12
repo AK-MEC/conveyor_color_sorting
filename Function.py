@@ -508,3 +508,13 @@ class ObjectQueueManager:
         # else: no objects available yet — wait
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  Main simulation loop
+# ═══════════════════════════════════════════════════════════════════════════
+
+def run() -> None:
+    """
+    Simulation loop.  Step order each iteration:
+      1. mj_step            — advance physics
+      2. run_conveyor()     — kinematic belt override (skip pushed objects)
+      3. push_sched.step()  — fire / retract pushers on schedule

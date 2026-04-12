@@ -355,3 +355,10 @@
     </body><!-- pusher_yellow -->
 
     <!-- ═══════════════════════════════════════════════════════════
+         10 FLAT OBJECTS
+    ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Red bin — 2×2 grid -->
+    <body name="object_0" pos="0.7625 -0.4375 0.050">
+      <joint name="obj0_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj0_mat"/>
