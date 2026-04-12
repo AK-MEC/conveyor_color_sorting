@@ -478,3 +478,13 @@ class ObjectQueueManager:
         # ── Settle detection ───────────────────────────────────────────────
         for i in range(N_OBJECTS):
             if self.state[i] != 'active':
+                continue
+            if (sim_time - self.spawn_time[i]) < SETTLE_MIN_ACTIVE_TIME:
+                continue
+
+            x, y, z = self._read_pos(i)
+            speed    = self._read_speed(i)
+
+            # Off-belt: either past the passive drum OR pushed sideways into bin
+            off_belt = (x > BELT_X_MAX) or (abs(y) > SETTLE_Y_PUSH_THRESH)
+

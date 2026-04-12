@@ -334,3 +334,10 @@
          Identical geometry and joint to pusher_red.
          Yellow bin centre is at X=1.50; object drifts +0.20 m in X
          while being pushed in −Y, landing inside the bin. ✓
+         Actuator: act_push_yellow  (position servo, kp=3000)
+    ═══════════════════════════════════════════════════════════ -->
+    <body name="pusher_yellow" pos="1.480 0.20 0.6">
+
+      <joint name="pusher_yellow_slide" type="slide" axis="0 1 0"
+             limited="true" range="-0.45 0.0"
+             damping="80" armature="0.02"/>
