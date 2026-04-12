@@ -320,3 +320,10 @@
       <!-- Visual arm (no collision) — dài từ face (Y=0) đến Y=0.630 local
            → khi extended q=-0.45: arm span world Y=-0.25…+0.38 (bao phủ bệ ở Y=0.38)
            → khi retracted q=0:    arm span world Y=+0.20…+0.83 (bệ Y=0.38 nằm trong arm) -->
+      <geom type="box" size="0.006 0.315 0.006" pos="0 0.315 0"
+            rgba="0.50 0.50 0.50 1" contype="0" conaffinity="0"/>
+      <!-- Visual wall bracket — đầu sau của arm -->
+      <geom type="box" size="0.020 0.006 0.040" pos="0 0.630 0"
+            rgba="0.40 0.40 0.40 1" contype="0" conaffinity="0"/>
+
+    </body><!-- pusher_red -->

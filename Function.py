@@ -458,3 +458,13 @@ class ObjectQueueManager:
             if not on_belt:
                 continue
 
+            va = self.qvel_adr[i]
+            self.data.qvel[va]     = BELT_VELOCITY
+            self.data.qvel[va + 1] = 0.0
+            self.data.qvel[va + 2] = 0.0
+            self.data.qvel[va + 3] = 0.0
+            self.data.qvel[va + 4] = 0.0
+            self.data.qvel[va + 5] = 0.0
+            self.data.qpos[qa + 3:qa + 7] = SPAWN_QUAT
+
+    # ── Settle detection + FIFO spawn ─────────────────────────────────────
