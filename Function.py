@@ -498,3 +498,13 @@ class ObjectQueueManager:
 
         if self.idle_queue:
             idx = self.idle_queue.popleft()
+            self._do_spawn(idx, sim_time)
+            self.last_spawn = sim_time
+
+        elif self.fallen_queue:
+            idx = self.fallen_queue.popleft()   # FIFO — first settled → first re-used
+            self._do_spawn(idx, sim_time)
+            self.last_spawn = sim_time
+        # else: no objects available yet — wait
+
+
