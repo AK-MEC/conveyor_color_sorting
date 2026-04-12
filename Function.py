@@ -468,3 +468,13 @@ class ObjectQueueManager:
             self.data.qpos[qa + 3:qa + 7] = SPAWN_QUAT
 
     # ── Settle detection + FIFO spawn ─────────────────────────────────────
+
+    def step(self, sim_time: float) -> None:
+        """
+        1. Detect settled objects (fell off belt end OR pushed sideways).
+        2. Drain idle_queue first, then fallen_queue each SPAWN_INTERVAL.
+        """
+
+        # ── Settle detection ───────────────────────────────────────────────
+        for i in range(N_OBJECTS):
+            if self.state[i] != 'active':

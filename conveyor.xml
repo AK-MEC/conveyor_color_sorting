@@ -327,3 +327,10 @@
             rgba="0.40 0.40 0.40 1" contype="0" conaffinity="0"/>
 
     </body><!-- pusher_red -->
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PUSHER 2  —  YELLOW objects  (fires at X = 1.30 m)
+         ─────────────────────────────────────────────────────────
+         Identical geometry and joint to pusher_red.
+         Yellow bin centre is at X=1.50; object drifts +0.20 m in X
+         while being pushed in −Y, landing inside the bin. ✓
