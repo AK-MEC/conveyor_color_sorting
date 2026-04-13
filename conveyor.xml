@@ -404,3 +404,10 @@
       <geom class="flat_obj" material="obj8_mat"/>
     </body>
 
+  </worldbody>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       ACTUATORS
+       ─────────────────────────────────────────────────────────────
+       Both pushers use position servos (kp = 3000 N/m).
+

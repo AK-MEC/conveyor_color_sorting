@@ -578,3 +578,13 @@ def run() -> None:
             # Nếu frame chạy quá lâu (vision nặng) → không sleep, frame sau
             # vẫn chạy đúng SIM_STEPS_PER_FRAME bước → tốc độ nhất quán.
             elapsed = time.perf_counter() - t_frame
+            if elapsed < TARGET_FRAME_TIME:
+                time.sleep(TARGET_FRAME_TIME - elapsed)
+            t_frame = time.perf_counter()
+
+    renderer.close()
+
+
+def _vision_tick(
+    data:       mujoco.MjData,
+    manager:    ObjectQueueManager,
