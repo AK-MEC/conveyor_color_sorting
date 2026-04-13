@@ -518,3 +518,13 @@ def run() -> None:
       1. mj_step            — advance physics
       2. run_conveyor()     — kinematic belt override (skip pushed objects)
       3. push_sched.step()  — fire / retract pushers on schedule
+      4. manager.step()     — settle detection + spawn timer
+      5. Vision block       — render + detect_color → push_sched.schedule()
+      6. viewer.sync()      — update viewer
+    """
+    if not os.path.isfile(XML_PATH):
+        raise FileNotFoundError(
+            f"Model file not found: {XML_PATH}\n"
+            "Place conveyor.xml in the same directory as this script.")
+
+    model = mujoco.MjModel.from_xml_path(XML_PATH)
