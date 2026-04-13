@@ -411,3 +411,10 @@
        ─────────────────────────────────────────────────────────────
        Both pushers use position servos (kp = 3000 N/m).
 
+       ctrl = 0.00  → retracted (rest position, clear of belt)
+       ctrl = −0.40 → extended  (push stroke, sweeps object off belt)
+
+       forcerange caps the output so the servo cannot damage the belt
+       frame or objects at maximum extension.
+  ════════════════════════════════════════════════════════════════ -->
+  <actuator>

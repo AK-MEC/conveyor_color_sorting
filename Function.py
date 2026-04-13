@@ -588,3 +588,13 @@ def run() -> None:
 def _vision_tick(
     data:       mujoco.MjData,
     manager:    ObjectQueueManager,
+    push_sched: PushScheduler,
+    renderer:   mujoco.Renderer,
+    cam_id:     int,
+) -> None:
+    """
+    Vision subsystem — called every VISION_EVERY_STEPS simulation steps.
+
+    CAMERA (X=0.40) - chi phat hien vat DO.
+      Delay = (0.80 - obj_x) / 0.200 ~ 2 s => pusher do fire dung luc.
+
