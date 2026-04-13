@@ -568,3 +568,13 @@ def run() -> None:
                 manager.step(data.time)
                 step_count += 1
                 if step_count % VISION_EVERY_STEPS == 0:
+                    _vision_tick(data, manager, push_sched, renderer, cam_id)
+
+            # ── Render ────────────────────────────────────────────────────
+            viewer.sync()
+
+            # ── Pace: sleep phần còn lại của frame để đạt 50 fps ─────────
+            # Nếu frame xử lý xong sớm → sleep để chờ đủ TARGET_FRAME_TIME.
+            # Nếu frame chạy quá lâu (vision nặng) → không sleep, frame sau
+            # vẫn chạy đúng SIM_STEPS_PER_FRAME bước → tốc độ nhất quán.
+            elapsed = time.perf_counter() - t_frame

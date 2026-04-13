@@ -397,3 +397,10 @@
     </body>
     <body name="object_5" pos="1.500 -0.4 0.050">
       <joint name="obj5_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj5_mat"/>
+    </body>
+    <body name="object_8" pos="1.575 -0.4 0.050">
+      <joint name="obj8_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj8_mat"/>
+    </body>
+
