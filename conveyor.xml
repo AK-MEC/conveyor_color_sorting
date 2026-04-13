@@ -390,3 +390,10 @@
       <geom class="flat_obj" material="obj7_mat"/>
     </body>
 
+    <!-- Yellow bin — 1 row of 3 -->
+    <body name="object_2" pos="1.425 -0.4 0.050">
+      <joint name="obj2_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj2_mat"/>
+    </body>
+    <body name="object_5" pos="1.500 -0.4 0.050">
+      <joint name="obj5_free" type="free" damping="0" armature="0"/>

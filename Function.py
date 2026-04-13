@@ -558,3 +558,13 @@ def run() -> None:
         viewer.cam.elevation  = -20
         viewer.cam.azimuth    = 160
 
+        while viewer.is_running():
+
+            # ── Luôn chạy đúng SIM_STEPS_PER_FRAME bước vật lý ───────────
+            for _ in range(SIM_STEPS_PER_FRAME):
+                mujoco.mj_step(model, data)
+                manager.run_conveyor(excluded=push_sched.active_pushes)
+                push_sched.step(data.time)
+                manager.step(data.time)
+                step_count += 1
+                if step_count % VISION_EVERY_STEPS == 0:
