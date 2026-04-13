@@ -383,3 +383,10 @@
     </body>
     <body name="object_4" pos="2.25  0.000 0.050">
       <joint name="obj4_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj4_mat"/>
+    </body>
+    <body name="object_7" pos="2.25  0.075 0.050">
+      <joint name="obj7_free" type="free" damping="0" armature="0"/>
+      <geom class="flat_obj" material="obj7_mat"/>
+    </body>
+

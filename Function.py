@@ -548,3 +548,13 @@ def run() -> None:
     SIM_STEPS_PER_FRAME = 10
     TARGET_FRAME_TIME   = SIM_STEPS_PER_FRAME * model.opt.timestep  # 0.020 s
 
+    step_count = 0
+    t_frame    = time.perf_counter()
+
+    with mujoco.viewer.launch_passive(model, data) as viewer:
+
+        viewer.cam.lookat[:]  = [1.0, 0.0, 0.53]
+        viewer.cam.distance   = 4.5
+        viewer.cam.elevation  = -20
+        viewer.cam.azimuth    = 160
+
