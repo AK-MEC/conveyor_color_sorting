@@ -528,3 +528,13 @@ def run() -> None:
             "Place conveyor.xml in the same directory as this script.")
 
     model = mujoco.MjModel.from_xml_path(XML_PATH)
+    data  = mujoco.MjData(model)
+    mujoco.mj_resetData(model, data)
+    mujoco.mj_forward(model, data)
+
+    # ── Subsystem initialisation ───────────────────────────────────────────
+    manager    = ObjectQueueManager(model, data)
+    push_sched = PushScheduler(model, data, manager)   # BUG-FIX: manager ref cho yellow ghost guard
+    renderer   = mujoco.Renderer(model, height=RENDER_H, width=RENDER_W)
+    cam_id     = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_CAMERA, CAMERA_NAME)
+
