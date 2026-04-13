@@ -538,3 +538,13 @@ def run() -> None:
     renderer   = mujoco.Renderer(model, height=RENDER_H, width=RENDER_W)
     cam_id     = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_CAMERA, CAMERA_NAME)
 
+    if cam_id < 0:
+        raise RuntimeError(f"Camera '{CAMERA_NAME}' not found in model.")
+
+    # ── Fixed-steps-per-frame constants ───────────────────────────────────
+    # Chạy đúng SIM_STEPS_PER_FRAME bước vật lý trước mỗi viewer.sync().
+    # → mỗi frame render luôn có cùng lượng dịch chuyển → không jitter/jump.
+    # 10 bước × 0.002 s = 0.020 s sim/frame  →  target 50 fps real-time.
+    SIM_STEPS_PER_FRAME = 10
+    TARGET_FRAME_TIME   = SIM_STEPS_PER_FRAME * model.opt.timestep  # 0.020 s
+
