@@ -628,3 +628,13 @@ def _vision_tick(
     # ── GROUND-TRUTH: YELLOW detection near pusher ─────────────────────────
     # Khong can camera — dung index de biet chinh xac vat nao la vang.
     # Detect khi vat trong ±CAMERA_DETECT_WIN cua YELLOW_DETECT_X=1.35.
+    for i in range(N_OBJECTS):
+        if i not in YELLOW_OBJECTS:
+            continue
+        if manager.state[i] != 'active':
+            continue
+        if i in push_sched.active_pushes:
+            continue
+
+        x, _, _ = manager._read_pos(i)
+        if abs(x - YELLOW_DETECT_X) > CAMERA_DETECT_WIN:
