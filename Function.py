@@ -618,3 +618,13 @@ def _vision_tick(
         renderer.update_scene(data, camera=cam_id)
         frame_rgb = renderer.render()
         frame_bgr = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
+
+        color = detect_color(frame_bgr)
+        if color == 'R':
+            push_sched.schedule('R', data.time, i, obj_x=x)
+
+        break   # moi vision tick chi render 1 lan
+
+    # ── GROUND-TRUTH: YELLOW detection near pusher ─────────────────────────
+    # Khong can camera — dung index de biet chinh xac vat nao la vang.
+    # Detect khi vat trong ±CAMERA_DETECT_WIN cua YELLOW_DETECT_X=1.35.
