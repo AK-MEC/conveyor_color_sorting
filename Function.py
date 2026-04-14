@@ -638,3 +638,13 @@ def _vision_tick(
 
         x, _, _ = manager._read_pos(i)
         if abs(x - YELLOW_DETECT_X) > CAMERA_DETECT_WIN:
+            continue
+
+        # Vat vang da vao vung gan pusher => schedule ngay
+        push_sched.schedule('Y', data.time, i, obj_x=x)
+        break
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+if __name__ == "__main__":
+    run()
