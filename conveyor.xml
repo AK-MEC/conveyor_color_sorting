@@ -425,3 +425,10 @@
               kp="3000"
               ctrllimited="true"  ctrlrange="-0.45 0.0"
               forcelimited="true" forcerange="-1000 1000"/>
+
+    <!-- Pusher 2: YELLOW objects at X = 1.30 m -->
+    <position name="act_push_yellow"
+              joint="pusher_yellow_slide"
+              kp="3000"
+              ctrllimited="true"  ctrlrange="-0.45 0.0"
+              forcelimited="true" forcerange="-1000 1000"/>

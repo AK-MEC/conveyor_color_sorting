@@ -608,3 +608,13 @@ def _vision_tick(
         if manager.state[i] != 'active':
             continue
         if i in push_sched.active_pushes:
+            continue
+
+        x, _, _ = manager._read_pos(i)
+        if abs(x - CAMERA_X) > CAMERA_DETECT_WIN:
+            continue
+
+        # Render va classify — chi schedule neu detect RED
+        renderer.update_scene(data, camera=cam_id)
+        frame_rgb = renderer.render()
+        frame_bgr = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
