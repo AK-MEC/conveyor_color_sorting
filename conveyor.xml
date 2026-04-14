@@ -418,3 +418,10 @@
        frame or objects at maximum extension.
   ════════════════════════════════════════════════════════════════ -->
   <actuator>
+
+    <!-- Pusher 1: RED objects at X = 0.80 m -->
+    <position name="act_push_red"
+              joint="pusher_red_slide"
+              kp="3000"
+              ctrllimited="true"  ctrlrange="-0.45 0.0"
+              forcelimited="true" forcerange="-1000 1000"/>

@@ -598,3 +598,13 @@ def _vision_tick(
     CAMERA (X=0.40) - chi phat hien vat DO.
       Delay = (0.80 - obj_x) / 0.200 ~ 2 s => pusher do fire dung luc.
 
+    GROUND-TRUTH (X=1.35) - phat hien vat VANG bang index thuc te.
+      Delay = (1.480 - 1.35) / 0.200 = 0.65 s => rat ngan, it sai so.
+      Ly do tach rieng: camera o X=0.40 phai tinh delay 5.4 s cho yellow
+      => tich luy sai lech lon; detect o X=1.35 giam con 0.65 s.
+    """
+    # ── CAMERA: RED detection only ─────────────────────────────────────────
+    for i in range(N_OBJECTS):
+        if manager.state[i] != 'active':
+            continue
+        if i in push_sched.active_pushes:
