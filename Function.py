@@ -85,7 +85,7 @@ YELLOW_OBJECTS    = frozenset([2, 5, 8])   # index vật màu vàng (cố địn
 PUSHER_RED_EXTENDED    = -0.24 # tăng từ -0.20: đẩy mạnh hơn, object bay vào red bin
 PUSHER_YELLOW_EXTENDED = -0.24 # tăng từ -0.30: đẩy đủ xa để object rơi vào yellow bin
 PUSHER_RETRACTED  =  0.00
-PUSH_HOLD_TIME    =  0.85   # s — đủ để vật clear belt, pusher retract kịp trước object tiếp theo
+PUSH_HOLD_TIME    =  0.8   # s — đủ để vật clear belt, pusher retract kịp trước object tiếp theo
 
 # Retract khi object đã qua rìa belt đủ xa để có momentum vào bin
 # RED -0.38 → object center -0.16 ; YELLOW -0.42 → object center -0.20
