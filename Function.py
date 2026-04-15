@@ -16,7 +16,7 @@ XML_PATH   = os.path.join(SCRIPT_DIR, "conveyor.xml")
 # ── Belt / spawn constants ─────────────────────────────────────────────────
 N_OBJECTS      = 10
 BELT_VELOCITY  = 0.200        # m/s  (+X)
-SPAWN_INTERVAL = 1.5          # s
+SPAWN_INTERVAL = 1.4          # s
 SPAWN_X        = 0.10         # m
 SPAWN_Y        = 0.00         # m
 SPAWN_Z        = 0.556        # m   belt top (0.526) + half-height (0.030)
