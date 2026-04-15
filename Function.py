@@ -40,7 +40,7 @@ SETTLE_Y_PUSH_THRESH   = 0.28   # |y| > this → object was pushed off belt side
 CAMERA_NAME        = "side_camera"
 CAMERA_X           = 0.40    # world-X of the camera; detection window centred here
 CAMERA_DETECT_WIN  = 0.07    # m  — ±window around CAMERA_X to trigger a render
-VISION_EVERY_STEPS = 4       # render every N sim steps  (= 0.010 s at dt=0.002)
+VISION_EVERY_STEPS = 5       # render every N sim steps  (= 0.010 s at dt=0.002)
 RENDER_W           = 320
 RENDER_H           = 240
 
