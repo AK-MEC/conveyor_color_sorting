@@ -1,34 +1,5 @@
 <mujoco model="KGF65-KA_BeltConveyor">
-
-  <!--
-    ╔══════════════════════════════════════════════════════════════════╗
-    ║  KGF65-KA Belt Conveyor  –  Pure Kinematic-Override model       ║
-    ║                                                                  ║
-    ║  No tendons · No equality constraints                           ║
-    ║  Belt motion is 100 % kinematic qvel injection in Python        ║
-    ║                                                                  ║
-    ║  ADDITIONS vs original:                                         ║
-    ║    side_camera  – fixed world cam at X=0.40 (before pushers)   ║
-    ║    pusher_red   – slide actuator at X=0.80, fires on RED        ║
-    ║    pusher_yellow– slide actuator at X=1.30, fires on YELLOW     ║
-    ║                                                                  ║
-    ║  Geometry reference (all world-frame)                           ║
-    ║    Belt floor top surface  :  z = 0.526 m                       ║
-    ║    Object half-height      :  0.030 m  (60×60×60 mm cube)      ║
-    ║    Object rest on belt     :  z = 0.556 m  ← SPAWN_Z           ║
-    ║    Bin floor top           :  z = 0.020 m                       ║
-    ║    Object rest in bin      :  z = 0.050 m                       ║
-    ║                                                                  ║
-    ║  Pusher geometry (world-frame, both pushers identical):         ║
-    ║    Body pos Y  :  +0.20 m  (outside +Y rail at Y=+0.138)       ║
-    ║    Slide axis  :  world Y                                       ║
-    ║    q = 0.00    :  retracted, face at Y ≈ +0.19  (clear)        ║
-    ║    q = −0.45   :  extended,  face at Y ≈ −0.26  (past belt)    ║
-    ╚══════════════════════════════════════════════════════════════════╝
-  -->
-
   <compiler angle="degree" meshdir="." texturedir="."/>
-
   <option gravity="0 0 -9.81"
           timestep="0.002"
           solver="Newton"
@@ -36,13 +7,10 @@
           tolerance="1e-10"
           cone="pyramidal"
           impratio="10"/>
-
-  <!-- ════════════════════════════════════════════════════════════════
-       ASSET
-  ════════════════════════════════════════════════════════════════ -->
+          
+  <!--  ASSET-->
   <asset>
     <mesh name="simlify" file="simlify.stl" scale="0.001 0.001 0.001"/>
-
     <texture name="belt_tex"  type="2d" file="belt_stripe.png"/>
     <texture name="metal_tex" type="2d" builtin="flat"
              rgb1=".48 .50 .52" width="1" height="1"/>
@@ -50,7 +18,6 @@
              rgb1=".18 .18 .20" rgb2=".28 .28 .32" width="64" height="64"/>
     <texture name="grid_tex"  type="2d" builtin="checker"
              rgb1=".20 .20 .20" rgb2=".26 .26 .26" width="64" height="64"/>
-
     <material name="belt_mat"    texture="belt_tex"
               texrepeat="20 1"   specular="0.05" shininess="0.03"
               rgba="0.12 0.48 0.16 1"/>
@@ -63,8 +30,7 @@
     <material name="ground_mat"  texture="grid_tex"
               texrepeat="24 24" specular="0.05" shininess="0.03"
               rgba="1 1 1 1"/>
-
-    <!-- Object materials: pattern R B Y R B Y R B Y R -->
+    <!-- Object materials -->
     <material name="obj0_mat" rgba="1 0 0 1"/>
     <material name="obj1_mat" rgba="0 0 1 1"/>
     <material name="obj2_mat" rgba="1 1 0 1"/>
@@ -77,19 +43,15 @@
     <material name="obj9_mat" rgba="1 0 0 1"/>
   </asset>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       DEFAULT
-  ════════════════════════════════════════════════════════════════ -->
+  <!-- DEFAULT -->
   <default>
-
     <geom condim="4"
           friction="0.8 0.008 0.0005"
           solimp="0.98 0.999 0.001 0.5 2"
           solref="0.010 1"/>
-
     <joint limited="false" damping="0.02" armature="0.001"/>
 
-    <!-- Conveyor objects: 60×60×60 mm cube -->
+    <!-- Conveyor objects -->
     <default class="flat_obj">
       <geom type="box"
             size="0.030 0.030 0.030"
@@ -112,7 +74,7 @@
             contype="1" conaffinity="1"/>
     </default>
 
-    <!-- Pusher face: low friction so object slides off belt cleanly -->
+    <!-- Pusher face -->
     <default class="pusher_face">
       <geom type="box"
             condim="3"
@@ -124,18 +86,14 @@
 
   </default>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       WORLDBODY
-  ════════════════════════════════════════════════════════════════ -->
+  <!-- WORLDBODY -->
   <worldbody>
-
     <!-- Ground plane -->
     <geom name="ground" type="plane" size="12 8 0.1"
           material="ground_mat"
           friction="0.5 0.005 0.0002"
           solimp="0.99 0.999 0.001" solref="0.010 1"
           contype="1" conaffinity="1"/>
-
     <!-- Lighting -->
     <light name="sun"  directional="true"
            diffuse=".85 .85 .85" specular=".2 .2 .2"
@@ -144,49 +102,38 @@
            pos="-1 3 4" dir=".4 -.5 -1" castshadow="false"/>
     <light name="top"  directional="false" diffuse=".25 .25 .25"
            pos="1 0 5"  dir="0 0 -1"     castshadow="false"/>
+    <!-- SIDE CAMERA MOUNT -->
 
-    <!-- ═══════════════════════════════════════════════════════════
-         SIDE CAMERA MOUNT
-         ─────────────────────────────────────────────────────────
-         Physical body at (0.40, -0.50, 0.70) tilted 45 deg down.
-         Vertical post + horizontal arm mount it beside the belt.
-         Camera sensor stays at the same world pos/euler as before.
-    ═══════════════════════════════════════════════════════════ -->
-
-    <!-- Vertical post (floor → arm height) — left side of belt (-Y) -->
+    <!-- Vertical post -->
     <geom type="cylinder" size="0.014 0.350"
           pos="0.40 -0.19 0.350"
           rgba=".30 .30 .30 1" contype="0" conaffinity="0"/>
 
-    <!-- Camera body — đỉnh cột (Z=0.70), nghiêng 47° quanh X để nhìn xuống belt -->
+    <!-- Camera body -->
     <body name="camera_body" pos="0.40 -0.19 0.70" euler="47 0 0">
       <!-- Housing box -->
       <geom type="box" size="0.028 0.022 0.042"
             rgba=".10 .10 .10 1" contype="0" conaffinity="0"/>
-      <!-- Lens barrel (along body -Z = optical axis) -->
+      <!-- Lens barrel -->
       <geom type="cylinder" size="0.014 0.016" pos="0 0 -0.056"
             rgba=".07 .07 .07 1" contype="0" conaffinity="0"/>
-      <!-- Lens glass (blue tint) -->
+      <!-- Lens glass -->
       <geom type="cylinder" size="0.011 0.003" pos="0 0 -0.075"
             rgba=".25 .45 .90 0.75" contype="0" conaffinity="0"/>
-      <!-- Status LED (green) -->
+      <!-- Status LED -->
       <geom type="sphere" size="0.005" pos="0 0.024 0.030"
             rgba=".05 .90 .15 1" contype="0" conaffinity="0"/>
-      <!-- Camera sensor — aligned with body frame -->
+      <!-- Camera sensor -->
       <camera name="side_camera" fovy="50"/>
     </body>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CONVEYOR FRAME ASSEMBLY  (visual only, no collision)
-    ═══════════════════════════════════════════════════════════ -->
+    <!--  CONVEYOR FRAME ASSEMBLY  -->
     <body name="conveyor_frame" pos="0 0 0">
-
       <geom name="frame_mesh" type="mesh" mesh="simlify"
             euler="0 90 90"
             pos="0.875 0 0.440"
             contype="0" conaffinity="0"
             material="frame_mat"/>
-
       <!-- Leg pairs -->
       <geom type="box" size=".018 .018 .237" pos=".10  -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="box" size=".018 .018 .237" pos=".10   .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
@@ -194,33 +141,28 @@
       <geom type="box" size=".018 .018 .237" pos="1.00  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="box" size=".018 .018 .237" pos="1.90 -.110 .237" material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="box" size=".018 .018 .237" pos="1.90  .110 .237" material="frame_mat" contype="0" conaffinity="0"/>
-
       <!-- Rails & bed -->
       <geom name="rail_l" type="box" size="1.0 .012 .022" pos="1.0 -.138 .474" material="frame_mat" contype="0" conaffinity="0"/>
       <geom name="rail_r" type="box" size="1.0 .012 .022" pos="1.0  .138 .474" material="frame_mat" contype="0" conaffinity="0"/>
       <geom name="bed"    type="box" size="1.0 .122 .005" pos="1.0  .000 .487" material="frame_mat" contype="0" conaffinity="0"/>
-
       <!-- Drive drum -->
       <geom type="cylinder" size=".026 .126" pos="0.0  0.000 0.500" euler="90 0 0" material="drum_mat"  contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".031 .006" pos="0.0  .133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".031 .006" pos="0.0 -.133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".010 .028" pos="0.0  .165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".010 .028" pos="0.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
-
       <!-- Passive drum -->
       <geom type="cylinder" size=".026 .126" pos="2.0  0.000 0.500" euler="90 0 0" material="drum_mat"  contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".031 .006" pos="2.0  .133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".031 .006" pos="2.0 -.133 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".010 .028" pos="2.0  .165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" size=".010 .028" pos="2.0 -.165 0.500" euler="90 0 0"  material="frame_mat" contype="0" conaffinity="0"/>
-
-      <!-- Belt visual (texture scroll, no collision) -->
+      <!-- Belt visual -->
       <geom name="belt_visual" type="box" size="1.0 0.122 0.002"
             pos="1.0 0 0.524"
             contype="0" conaffinity="0"
             material="belt_mat"/>
-
-      <!-- Belt physics floor (invisible) -->
+      <!-- Belt physics floor -->
       <geom name="belt_floor" type="box"
             size="1.0 0.125 0.002"
             pos="1.0 0 0.524"
@@ -230,14 +172,10 @@
             solref="0.010 1"
             contype="1" conaffinity="1"
             rgba="0 0 0 0"/>
-
     </body><!-- conveyor_frame -->
 
-    <!-- ═══════════════════════════════════════════════════════════
-         DROP-OFF BINS
-    ═══════════════════════════════════════════════════════════ -->
-
-    <!-- RED BIN  (X=0.80, Y=−0.40) -->
+    <!--  DROP-OFF BINS  -->
+    <!-- RED BIN  -->
     <body name="red_bin" pos="0.8 -0.5 0">
       <geom class="bin_wall" size=".255 .148 .010" pos="0 0 .010"    rgba=".85 .08 .08 1"/>
       <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".85 .08 .08 1"/>
@@ -245,8 +183,7 @@
       <geom class="bin_wall" size=".255 .012 .090" pos="0  .148 .100" rgba=".85 .08 .08 1"/>
       <geom class="bin_wall" size=".012 .148 .045" pos=".255 0 .055"  rgba=".85 .08 .08 1"/>
     </body>
-
-    <!-- BLUE BIN  (X=2.25, Y=0.00) -->
+    <!-- BLUE BIN  -->
     <body name="blue_bin" pos="2.25 0.00 0">
       <geom class="bin_wall" size=".255 .148 .010" pos="0 0 .010"    rgba=".08 .18 .82 1"/>
       <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".08 .18 .82 1"/>
@@ -254,8 +191,7 @@
       <geom class="bin_wall" size=".255 .012 .090" pos="0  .148 .100" rgba=".08 .18 .82 1"/>
       <geom class="bin_wall" size=".012 .148 .045" pos=".255 0 .055"  rgba=".08 .18 .82 1"/>
     </body>
-
-    <!-- YELLOW BIN  (X=1.50, Y=−0.40) -->
+    <!-- YELLOW BIN  -->
     <body name="yellow_bin" pos="1.5 -0.5 0">
       <geom class="bin_wall" size=".255 .148 .010" pos="0 0 .010"    rgba=".92 .80 .00 1"/>
       <geom class="bin_wall" size=".012 .148 .090" pos="-.255 0 .100" rgba=".92 .80 .00 1"/>
@@ -264,12 +200,7 @@
       <geom class="bin_wall" size=".012 .148 .045" pos=".255 0 .055"  rgba=".92 .80 .00 1"/>
     </body>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PUSHER RED PEDESTAL  —  vertical post below pusher_red bracket
-         ─────────────────────────────────────────────────────────
-         Bracket world pos: (0.80, 0.38, 0.60)
-         Post: z=0 → z=0.60, half-height=0.300, centre z=0.300
-    ═══════════════════════════════════════════════════════════ -->
+    <!-- PUSHER RED PEDESTAL -->
     <!-- Vertical post -->
     <geom type="cylinder" size="0.014 0.300"
           pos="0.80 0.38 0.300"
@@ -279,12 +210,7 @@
           pos="0.80 0.38 0.008"
           rgba=".25 .25 .25 1" contype="0" conaffinity="0"/>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PUSHER YELLOW PEDESTAL  —  vertical post below pusher_yellow bracket
-         ─────────────────────────────────────────────────────────
-         Bracket world pos: (1.480, 0.38, 0.60)
-         Post: z=0 → z=0.60, half-height=0.300, centre z=0.300
-    ═══════════════════════════════════════════════════════════ -->
+    <!-- PUSHER YELLOW PEDESTAL -->
     <!-- Vertical post -->
     <geom type="cylinder" size="0.014 0.300"
           pos="1.480 0.38 0.300"
@@ -294,71 +220,42 @@
           pos="1.480 0.38 0.008"
           rgba=".25 .25 .25 1" contype="0" conaffinity="0"/>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PUSHER 1  —  RED objects  (fires at X = 0.80 m)
-         ─────────────────────────────────────────────────────────
-         Body fixed at (0.80, +0.20, 0.556) — +Y side of belt.
-         Slide joint along world Y.
-           q = 0.00  → face at Y ≈ +0.19  (retracted, clear of belt)
-           q = −0.45 → face at Y ≈ −0.26  (extended, past belt edge)
-         Visual arm connects face to fixed bracket above rail.
-         Actuator: act_push_red  (position servo, kp=3000)
-    ═══════════════════════════════════════════════════════════ -->
+    <!--  PUSHER 1  —  RED objects  -->
     <body name="pusher_red" pos="0.80 0.20 0.6">
-
-      <!-- Slide joint: range đủ để face đến Y=-0.23 (object center tới -0.20) -->
+      <!-- Slide joint -->
       <joint name="pusher_red_slide" type="slide" axis="0 1 0"
              limited="true" range="-0.45 0.0"
              damping="80" armature="0.02"/>
-
-      <!-- Pusher face: rộng hơn theo X (0.080) để ít hụt hơn khi timing lệch nhẹ -->
+      <!-- Pusher face -->
       <geom class="pusher_face"
             name="pusher_red_face"
             size="0.080 0.010 0.055"
             rgba="0.90 0.10 0.10 1.0"/>
-
-      <!-- Visual arm (no collision) — dài từ face (Y=0) đến Y=0.630 local
-           → khi extended q=-0.45: arm span world Y=-0.25…+0.38 (bao phủ bệ ở Y=0.38)
-           → khi retracted q=0:    arm span world Y=+0.20…+0.83 (bệ Y=0.38 nằm trong arm) -->
+      <!-- Visual arm -->
       <geom type="box" size="0.006 0.315 0.006" pos="0 0.315 0"
             rgba="0.50 0.50 0.50 1" contype="0" conaffinity="0"/>
-      <!-- Visual wall bracket — đầu sau của arm -->
+      <!-- Visual wall bracket -->
       <geom type="box" size="0.020 0.006 0.040" pos="0 0.630 0"
             rgba="0.40 0.40 0.40 1" contype="0" conaffinity="0"/>
-
     </body><!-- pusher_red -->
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PUSHER 2  —  YELLOW objects  (fires at X = 1.30 m)
-         ─────────────────────────────────────────────────────────
-         Identical geometry and joint to pusher_red.
-         Yellow bin centre is at X=1.50; object drifts +0.20 m in X
-         while being pushed in −Y, landing inside the bin. ✓
-         Actuator: act_push_yellow  (position servo, kp=3000)
-    ═══════════════════════════════════════════════════════════ -->
+    <!--   PUSHER 2  —  YELLOW objects  -->
     <body name="pusher_yellow" pos="1.480 0.20 0.6">
-
       <joint name="pusher_yellow_slide" type="slide" axis="0 1 0"
              limited="true" range="-0.45 0.0"
              damping="80" armature="0.02"/>
-
       <geom class="pusher_face"
             name="pusher_yellow_face"
             size="0.080 0.010 0.055"
             rgba="0.95 0.82 0.05 1.0"/>
-
       <geom type="box" size="0.006 0.315 0.006" pos="0 0.315 0"
             rgba="0.50 0.50 0.50 1" contype="0" conaffinity="0"/>
       <geom type="box" size="0.020 0.006 0.040" pos="0 0.630 0"
             rgba="0.40 0.40 0.40 1" contype="0" conaffinity="0"/>
-
     </body><!-- pusher_yellow -->
 
-    <!-- ═══════════════════════════════════════════════════════════
-         10 FLAT OBJECTS
-    ═══════════════════════════════════════════════════════════ -->
-
-    <!-- Red bin — 2×2 grid -->
+    <!-- 10 OBJECTS-->
+    <!-- Red bin -->
     <body name="object_0" pos="0.7625 -0.4375 0.050">
       <joint name="obj0_free" type="free" damping="0" armature="0"/>
       <geom class="flat_obj" material="obj0_mat"/>
@@ -376,7 +273,7 @@
       <geom class="flat_obj" material="obj9_mat"/>
     </body>
 
-    <!-- Blue bin — 1 row of 3 -->
+    <!-- Blue bin -->
     <body name="object_1" pos="2.25 -0.075 0.050">
       <joint name="obj1_free" type="free" damping="0" armature="0"/>
       <geom class="flat_obj" material="obj1_mat"/>
@@ -390,7 +287,7 @@
       <geom class="flat_obj" material="obj7_mat"/>
     </body>
 
-    <!-- Yellow bin — 1 row of 3 -->
+    <!-- Yellow bin -->
     <body name="object_2" pos="1.425 -0.4 0.050">
       <joint name="obj2_free" type="free" damping="0" armature="0"/>
       <geom class="flat_obj" material="obj2_mat"/>
@@ -406,33 +303,19 @@
 
   </worldbody>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       ACTUATORS
-       ─────────────────────────────────────────────────────────────
-       Both pushers use position servos (kp = 3000 N/m).
-
-       ctrl = 0.00  → retracted (rest position, clear of belt)
-       ctrl = −0.40 → extended  (push stroke, sweeps object off belt)
-
-       forcerange caps the output so the servo cannot damage the belt
-       frame or objects at maximum extension.
-  ════════════════════════════════════════════════════════════════ -->
+  <!--  ACTUATORS -->
   <actuator>
-
-    <!-- Pusher 1: RED objects at X = 0.80 m -->
+    <!-- Pusher  -->
     <position name="act_push_red"
               joint="pusher_red_slide"
               kp="3000"
               ctrllimited="true"  ctrlrange="-0.45 0.0"
               forcelimited="true" forcerange="-1000 1000"/>
-
-    <!-- Pusher 2: YELLOW objects at X = 1.30 m -->
+    <!-- Pusher 2 -->
     <position name="act_push_yellow"
               joint="pusher_yellow_slide"
               kp="3000"
               ctrllimited="true"  ctrlrange="-0.45 0.0"
               forcelimited="true" forcerange="-1000 1000"/>
-
   </actuator>
-
 </mujoco>
